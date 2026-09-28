@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  color-scheme: light;
+  --page: #f6f6f4;
+  --surface: #fcfcfb;
+  --surface-2: #f0efec;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --accent: #2a78d6;
+  --accent-ink: #ffffff;
+  --success-text: #006300;
+  --critical-text: #b42626;
+
+  /* Pipeline stages: one blue ramp, validated as an ordinal scale. */
+  --st-applied: #86b6ef;
+  --st-screening: #5598e7;
+  --st-assessment: #2a78d6;
+  --st-interview: #1c5cab;
+  /* Outcomes: reserved status colors, always shown with a label. */
+  --st-offer: #0ca30c;
+  --st-rejected: #d03b3b;
+  --st-withdrawn: #a8a79f;
+  --st-ghosted: #c3c2b7;
+
+  /* Sequential ramp for the activity heatmap (0 = empty cell). */
+  --heat-0: #ebeae5;
+  --heat-1: #b7d3f6;
+  --heat-2: #6da7ec;
+  --heat-3: #2a78d6;
+  --heat-4: #184f95;
+
+  --series-1: #2a78d6;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-2: #232321;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #3987e5;
+    --accent-ink: #ffffff;
+    --success-text: #0ca30c;
+    --critical-text: #e66767;
+    --st-applied: #184f95;
+    --st-screening: #2a78d6;
+    --st-assessment: #5598e7;
+    --st-interview: #9ec5f4;
+    --st-offer: #0ca30c;
+    --st-rejected: #e66767;
+    --st-withdrawn: #6b6a64;
+    --st-ghosted: #4a4945;
+    --heat-0: #262624;
+    --heat-1: #104281;
+    --heat-2: #256abf;
+    --heat-3: #5598e7;
+    --heat-4: #9ec5f4;
+    --series-1: #3987e5;
   }
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-2: #232321;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.1);
+  --accent: #3987e5;
+  --accent-ink: #ffffff;
+  --success-text: #0ca30c;
+  --critical-text: #e66767;
+  --st-applied: #184f95;
+  --st-screening: #2a78d6;
+  --st-assessment: #5598e7;
+  --st-interview: #9ec5f4;
+  --st-offer: #0ca30c;
+  --st-rejected: #e66767;
+  --st-withdrawn: #6b6a64;
+  --st-ghosted: #4a4945;
+  --heat-0: #262624;
+  --heat-1: #104281;
+  --heat-2: #256abf;
+  --heat-3: #5598e7;
+  --heat-4: #9ec5f4;
+  --series-1: #3987e5;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-grid: var(--grid);
+  --color-line: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-success: var(--success-text);
+  --color-critical: var(--critical-text);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
 }

@@ -3,24 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--disable-warning=ExperimentalWarning next dev -H 127.0.0.1",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "NODE_OPTIONS=--disable-warning=ExperimentalWarning next start -H 127.0.0.1",
+    "lint": "eslint",
+    "demo:seed": "NODE_OPTIONS=--disable-warning=ExperimentalWarning JOB_TRACKER_DB=data/demo.db tsx --conditions=react-server scripts/seed-demo.ts",
+    "demo": "NODE_OPTIONS=--disable-warning=ExperimentalWarning JOB_TRACKER_DB=data/demo.db next dev -H 127.0.0.1 -p 3001",
+    "test:ai": "NODE_OPTIONS=--disable-warning=ExperimentalWarning tsx --conditions=react-server --env-file=.env.local scripts/test-classifier.ts"
   },
   "dependencies": {
+    "@googleapis/gmail": "^22.0.1",
+    "clsx": "^2.1.1",
+    "html-to-text": "^10.0.1",
+    "lucide-react": "^1.48.0",
     "next": "16.3.6",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "recharts": "^3.10.1",
+    "server-only": "^0.0.1",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/html-to-text": "^9.0.4",
+    "@types/node": "^22.20.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
